@@ -11,15 +11,15 @@ type Redis struct {
 	Pool *redis.Pool
 }
 
-type RedisCommands interface {
+type InsRetCmds interface {
 	Set(key, value string)
 	Get(key string) string
 	SetEx(key, value string, duration int)
 	PSetEx(key, value string, duration int)
 }
 
-// This is to make sure Redis implements all of the RedisCommands interface functions.
-var val RedisCommands = (*Redis)(nil)
+// This is to make sure Redis implements all of the InsRetCmds interface functions.
+var val InsRetCmds = (*Redis)(nil)
 
 func (r *Redis) Set(key, value string) {
 	conn := r.Pool.Get()
